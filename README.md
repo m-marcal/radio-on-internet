@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
 
+# Figma
+You can find more about the "look and feel" objective on this Figma draft -> https://www.figma.com/file/4ZPJVtT85xfkoPUm8ySvE1/UTFPR---Frameworks---Radio---Marcelo-Mar%C3%A7al?type=design&node-id=0-1&mode=design
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
