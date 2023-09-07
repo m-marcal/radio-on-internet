@@ -1,0 +1,10 @@
+<div class="footer">
+    <div class="left">
+      <button (click)="togglePlayPause()" class="play-pause-button">
+        {{ isPlaying ? '||' : '>' }}
+      </button>
+    </div>
+    <div class="left">
+      <p *ngIf="isPlaying" class="radio-name">Ouvindo: {{ currentRadio }}</p>
+    </div>
+  </div>
