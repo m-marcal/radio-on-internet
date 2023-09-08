@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SimpleBannerComponent } from './simple-banner/simple-banner.component';
 import { FooterComponent } from './footer/footer.component';
+import { RadioListComponent } from './radio-list/radio-list.component';
+import { CreateEditRadioFormComponent } from './create-edit-radio-form/create-edit-radio-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SimpleBannerComponent,
-    FooterComponent
+    FooterComponent,
+    RadioListComponent,
+    CreateEditRadioFormComponent
   ],
   imports: [
     BrowserModule,

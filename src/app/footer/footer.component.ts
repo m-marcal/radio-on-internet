@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+
   isPlaying: boolean = false;
   currentRadio: string = '';
 
@@ -19,4 +20,6 @@ export class FooterComponent implements OnInit {
     //to-do
     this.isPlaying = !this.isPlaying;
   }
+
+ 
 }

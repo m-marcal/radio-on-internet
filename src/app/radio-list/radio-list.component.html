@@ -1,0 +1,8 @@
+<div class="radio-list">
+    <div *ngFor="let radio of radios" (click)="selectRadio(radio)" class="radio-item">
+      <button class="play-pause-button">
+        >
+      </button>
+      <span class="radio-name">{{ radio.name }}</span>
+    </div>
+  </div>
