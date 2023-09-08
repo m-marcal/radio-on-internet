@@ -1,17 +1,16 @@
 <div class="header">
-    <div class="left home-button">
-      <a routerLink="/">
-        <i class="material-icons">home</i>
-      </a>
+  <div class="left home-button">
+    <a routerLink="/">
+      <i class="material-icons">home</i>
+    </a>
+  </div>
+  <div class="right">
+    <div class="menu" (click)="toggleMenu()">
+      <i class="material-icons">menu</i>
     </div>
-    <div class="right">
-      <div class="menu" (click)="toggleMenu()">
-        <i class="material-icons">menu</i>
-      </div>
-      <div class="menu-items" [ngClass]="{ 'show-menu': isMenuOpen }">
-        <a href="#">Add Radio</a>
-        <a href="#">Logout</a>
-      </div>
+    <div class="menu-items" [ngClass]="{ 'show-menu': isMenuOpen }">
+      <a href="#">Add Radio</a>
+      <a href="#">Logout</a>
     </div>
   </div>
-  
+</div>

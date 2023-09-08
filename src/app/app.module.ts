@@ -8,6 +8,9 @@ import { SimpleBannerComponent } from './simple-banner/simple-banner.component';
 import { FooterComponent } from './footer/footer.component';
 import { RadioListComponent } from './radio-list/radio-list.component';
 import { CreateEditRadioFormComponent } from './create-edit-radio-form/create-edit-radio-form.component';
+import { FloatingButtonComponent } from './floating-button/floating-button.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -16,11 +19,13 @@ import { CreateEditRadioFormComponent } from './create-edit-radio-form/create-ed
     SimpleBannerComponent,
     FooterComponent,
     RadioListComponent,
-    CreateEditRadioFormComponent
+    CreateEditRadioFormComponent,
+    FloatingButtonComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

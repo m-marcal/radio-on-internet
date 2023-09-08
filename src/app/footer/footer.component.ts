@@ -20,6 +20,4 @@ export class FooterComponent implements OnInit {
     //to-do
     this.isPlaying = !this.isPlaying;
   }
-
- 
 }

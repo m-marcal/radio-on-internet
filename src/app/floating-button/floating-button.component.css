@@ -1,0 +1,21 @@
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #26a69a;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+}
+  
+.floating-btn i {
+  margin-top: 4px;
+}
+
+.add-btn {
+  color: white;
+}

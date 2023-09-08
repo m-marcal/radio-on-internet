@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router'; 
 import { RadioService } from '../services/radio.service';
+import { Radio } from '../model/radio.model';
 
 @Component({
   selector: 'app-radio-list',
@@ -8,17 +10,24 @@ import { RadioService } from '../services/radio.service';
 })
 export class RadioListComponent implements OnInit {
 
-  // Método para emitir o objeto selecionado
   selectRadio(radio: any) {
-    window.alert('Radio: ' + radio.name  + 'selecionada.');
+    window.alert('Radio: ' + radio.nome  + ' selecionada.');
   }
 
-  radios: { name: string; streamUrl: string; isPlaying: boolean }[] = [];
+  radios: Radio[] = [];
 
-  constructor(private radioService: RadioService) {}
+  constructor(private radioService: RadioService, private router: Router) {}
 
   ngOnInit(): void {
     this.radios = this.radioService.radios;
+  }
+
+  editRadio(radio: any) {
+    this.router.navigate(['/form', radio.id])
+  }
+
+  deleteRadio(radio: any) {
+    window.alert('Excluir Radio: ' + radio.nome);
   }
 
 }

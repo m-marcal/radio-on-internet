@@ -1,8 +1,10 @@
 <div class="radio-list">
-    <div *ngFor="let radio of radios" (click)="selectRadio(radio)" class="radio-item">
-      <button class="play-pause-button">
-        >
-      </button>
-      <span class="radio-name">{{ radio.name }}</span>
+  <div *ngFor="let radio of radios" class="radio-item">
+    <button class="play-pause-button" (click)="selectRadio(radio)"><i class="material-icons">forward</i></button>
+    <span class="radio-name">{{ radio.nome }}</span>
+    <div class="crud-buttons">
+      <button class="edit-button" (click)="editRadio(radio)"><i class="material-icons">edit</i></button>
+      <button class="delete-button" (click)="deleteRadio(radio)"><i class="material-icons">delete</i></button>
     </div>
   </div>
+</div>

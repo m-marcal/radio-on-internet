@@ -8,10 +8,13 @@ const routes: Routes = [
   { path: '', redirectTo: '/radio-list', pathMatch: 'full' },
   { path: 'radio-list', component: RadioListComponent },
   { path: 'form', component: CreateEditRadioFormComponent },
+  { path: 'form/:id', component: CreateEditRadioFormComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
