@@ -1,0 +1,10 @@
+{
+  "radios": [
+    {
+      "id": 1,
+      "nome": "Rádio UFRGS",
+      "descricao": "Rádio ao vivo da Universidade Federal do Rio Grande do Sul",
+      "url": "http://radioaovivo.ufrgs.br:8000/stream.mp3"
+    }
+  ]
+}

@@ -19,7 +19,14 @@ export class RadioListComponent implements OnInit {
   constructor(private radioService: RadioService, private router: Router) {}
 
   ngOnInit(): void {
-    this.radios = this.radioService.getAllRadios();
+    this.radioService.getAllRadios().subscribe(
+      (radios: Radio[]) => {
+        this.radios = radios;
+      },
+      (error: any) => {
+        console.error('Error:', error);
+      }
+    );
   }
 
   editRadio(radio: any) {
@@ -27,7 +34,8 @@ export class RadioListComponent implements OnInit {
   }
 
   deleteRadio(radio: any) {
-    window.alert('Excluir Radio: ' + radio.nome);
+    this.radioService.deleteRadio(radio.id);
+    location.reload();
   }
 
 }

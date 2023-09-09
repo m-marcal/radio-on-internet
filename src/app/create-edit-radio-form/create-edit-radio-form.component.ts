@@ -12,6 +12,7 @@ import { RadioService } from '../services/radio.service';
 export class CreateEditRadioFormComponent implements OnInit {
   @ViewChild('form') form!: NgForm;
   radio!: Radio;
+  radioId: number | undefined;
 
   constructor(
     private route: ActivatedRoute, 
@@ -19,7 +20,15 @@ export class CreateEditRadioFormComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit(): void {
-    this.radio = new Radio(-1, '', '', '');
+    this.route.params.subscribe(params => {
+      this.radioId = +params['id'];
+      if (isNaN(this.radioId)) {
+        this.radio = new Radio(null, '', '', '');
+      } else {
+        this.radio = new Radio(null, '', '', '');
+        //this.loadRadioData(this.radioId);
+      }
+    });
   }
 
   loadRadioData(id: number) {
@@ -27,8 +36,6 @@ export class CreateEditRadioFormComponent implements OnInit {
   }
 
   onSubmit() {
-
-    window.alert('Rádio cadastrada com sucesso' + '\n' + this.radio.nome + '\n' + this.radio.descricao + '\n' + this.radio.url);
     this.radioService.addRadio(this.radio);
     this.form.reset();
     this.router.navigate(['/radio-list']);

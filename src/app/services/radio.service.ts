@@ -1,48 +1,99 @@
 import { Injectable } from '@angular/core';
+import { Observable, from, of } from 'rxjs';
 import { Radio } from '../model/radio.model';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RadioService {
-  private readonly STORAGE_KEY = 'radios';
+  private baseUrl = 'http://localhost:3000/radios';
 
   constructor() {}
 
-  private getRadiosFromStorage(): Radio[] {
-    const radiosJson = localStorage.getItem(this.STORAGE_KEY);
-    return radiosJson ? JSON.parse(radiosJson) : [];
+  getAllRadios(): Observable<Radio[]> {
+    return from(
+      fetch(this.baseUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+    ).pipe(
+      catchError(error => {
+        console.error('Error:', error);
+        return of([]);
+      })
+    );
   }
 
-  private saveRadiosToStorage(radios: Radio[]): void {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(radios));
+
+
+  addRadio(radio: Radio): Observable<Radio | null> {
+    radio.id = null; // Prefiro deixar o json-server fazer auto-increment :) 
+
+    return from(
+      fetch(this.baseUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(radio)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+    ).pipe(
+      catchError(error => {
+        console.error('Error:', error);
+        return of(null);
+      })
+    );
   }
 
-  getAllRadios(): Radio[] {
-    return this.getRadiosFromStorage();
+  editRadio(updatedRadio: Radio): Observable<Radio | null> {
+    return from(
+      fetch(`${this.baseUrl}/${updatedRadio.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedRadio)
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+    ).pipe(
+      catchError(error => {
+        console.error('Error:', error);
+        return of(null);
+      })
+    );
   }
 
-  getRadioById(id: number): Radio | undefined {
-    const radios = this.getRadiosFromStorage();
-    return radios.find(radio => radio.id === id);
-  }
-
-  addRadio(radio: Radio): void {
-    const radios = this.getRadiosFromStorage();
-    
-    const lastId = radios.length > 0 ? radios[radios.length - 1].id : 0;
-    radio.id = lastId + 1;
-
-    radios.push(radio);
-    this.saveRadiosToStorage(radios);
-  }
-
-  editRadio(updatedRadio: Radio): void {
-    let radios = this.getRadiosFromStorage();
-    const index = radios.findIndex(radio => radio.id === updatedRadio.id);
-    if (index !== -1) {
-      radios[index] = updatedRadio;
-      this.saveRadiosToStorage(radios);
-    }
+  deleteRadio(id: number): Observable<void> {
+    return from(
+      fetch(`${this.baseUrl}/${id}`, {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+        })
+    ).pipe(
+      catchError(error => {
+        console.error('Error:', error);
+        return of(null);
+      }),
+      map(() => {})
+    );
   }
 }
