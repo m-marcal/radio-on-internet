@@ -1,10 +1,21 @@
-<div class="radio-list">
-  <div *ngFor="let radio of radios" class="radio-item">
-    <button class="play-pause-button" (click)="selectRadio(radio)"><i class="material-icons">forward</i></button>
-    <span class="radio-name">{{ radio.nome }}</span>
-    <div class="crud-buttons">
-      <button class="edit-button" (click)="editRadio(radio)"><i class="material-icons">edit</i></button>
-      <button class="delete-button" (click)="deleteRadio(radio)"><i class="material-icons">delete</i></button>
-    </div>
-  </div>
-</div>
+<table class="radio-list">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let radio of radios" class="radio-item">
+      <td>
+        <button class="play-pause-button" (click)="selectRadio(radio)"><i class="material-icons">forward</i></button>
+      </td>
+      <td class="radio-name">{{ radio.nome }}</td>
+      <td class="crud-buttons">
+        <button class="edit-button" (click)="editRadio(radio)"><i class="material-icons">edit</i></button>
+        <button class="delete-button" (click)="deleteRadio(radio)"><i class="material-icons">delete</i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

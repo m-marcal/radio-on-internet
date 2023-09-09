@@ -19,7 +19,7 @@ export class RadioListComponent implements OnInit {
   constructor(private radioService: RadioService, private router: Router) {}
 
   ngOnInit(): void {
-    this.radios = this.radioService.radios;
+    this.radios = this.radioService.getAllRadios();
   }
 
   editRadio(radio: any) {

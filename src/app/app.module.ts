@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RadioListComponent } from './radio-list/radio-list.component';
 import { CreateEditRadioFormComponent } from './create-edit-radio-form/create-edit-radio-form.component';
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

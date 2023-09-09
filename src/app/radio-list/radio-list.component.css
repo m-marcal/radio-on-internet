@@ -1,23 +1,35 @@
 .radio-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ddd;
-  padding: 10px;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 40px;
-  margin-bottom: 5%;
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.radio-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px;
+.radio-list th,
+.radio-list td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
   border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
-  width: 100%;
+}
+
+.radio-list th:first-child,
+.radio-list td:first-child {
+  width: 50px;
+}
+
+.radio-list th:nth-child(2),
+.radio-list td:nth-child(2) {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.radio-list th:last-child,
+.radio-list td:last-child {
+  width: 80px;
 }
 
 .play-pause-button {
@@ -30,30 +42,21 @@
 }
 
 .radio-name {
-  margin-left: 4px;
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 25px;
+  font-size: 16px;
 }
 
 .edit-button,
 .delete-button {
   color: black;
   border: dotted;
-  padding: 3px;
+  border-width: 2px;
+  padding: 2px;
   cursor: pointer;
   background-color: #26a69a;
-}
-
-.crud-buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  margin-right: 2px;
 }
 
 .material-icons {
-  font-size: 30px;
+  font-size: 20px;
   vertical-align: middle;
 }

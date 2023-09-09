@@ -1,15 +1,58 @@
-<form (submit)="submitForm()">
-  <div class="form-group">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required required [(ngModel)]="nome">
-  </div>
-  <div class="form-group">
-    <label for="descricao">Descrição:</label>
-    <input type="text" id="descricao" name="descricao" required>
-  </div>
-  <div class="form-group">
-    <label for="url">URL:</label>
-    <input type="text" id="url" name="url" required>
-  </div>
-  <button type="submit">Salvar</button>
-</form>
+<div class="form-container">
+  <form #form="ngForm" (submit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="nome">Nome *</label>
+      <input 
+        type="text" 
+        id="nome" 
+        name="nome" 
+        class="validate"
+        required 
+        [(ngModel)]="this.radio.nome" 
+        #nome="ngModel" 
+        pattern="^[a-zA-Z0-9\s]{1,100}$" >
+        <div class="red-text" [hidden]="nome.control.valid || nome.control.untouched">
+          Nome é composto por letras e números apenas. No máximo 100 caracteres.
+        </div>
+        <div class="red-text" *ngIf="nome.control.hasError('required') && nome.control.touched">
+          Nome da Rádio é obrigatório.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="descricao">Descrição (opcional)</label>
+      <textarea
+        type="text" 
+        id="descricao" 
+        name="descricao" 
+        class="validate"
+        [(ngModel)]="this.radio.descricao"
+        #desc="ngModel"
+        pattern="^.{0,200}$" ></textarea>
+        <div class="red-text" [hidden]="desc.control.valid || desc.control.untouched">
+          A descrição deve ter no máximo 200 caracteres.
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="url">URL *</label>
+      <input 
+        type="text" 
+        id="url" 
+        name="url"
+        required 
+        [(ngModel)]="this.radio.url" 
+        #url="ngModel" 
+        pattern="^(http|https)://[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,4})(:[0-9]+)?(/?)([a-zA-Z0-9/?_.-]+)?$">
+        <div class="red-text" *ngIf="url.control.hasError('pattern') && url.control.touched">
+          Por favor, insira uma URL válida. Exemplo: http://link-para-radio.mp3
+        </div>
+        <div class="red-text" *ngIf="url.control.hasError('required') && url.control.touched">
+          URL obrigatório.
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="!form.valid">Salvar</button>
+  </form>
+</div>
