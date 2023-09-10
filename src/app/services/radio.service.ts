@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, of } from 'rxjs';
+import { Observable, from, of, throwError } from 'rxjs';
 import { Radio } from '../model/radio.model';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,91 +11,63 @@ import { catchError, map } from 'rxjs/operators';
 export class RadioService {
   private baseUrl = 'http://localhost:3000/radios';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getAllRadios(): Observable<Radio[]> {
-    return from(
-      fetch(this.baseUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-    ).pipe(
+    return this.http.get<Radio[]>(this.baseUrl).pipe(
       catchError(error => {
         console.error('Error:', error);
-        return of([]);
+        return throwError(error);
       })
     );
   }
 
-
-
   addRadio(radio: Radio): Observable<Radio | null> {
     radio.id = null; // Prefiro deixar o json-server fazer auto-increment :) 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
-    return from(
-      fetch(this.baseUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(radio)
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-    ).pipe(
+    return this.http.post<Radio>(this.baseUrl, radio, { headers }).pipe(
       catchError(error => {
         console.error('Error:', error);
-        return of(null);
+        return throwError(error);
       })
     );
   }
 
   editRadio(updatedRadio: Radio): Observable<Radio | null> {
-    return from(
-      fetch(`${this.baseUrl}/${updatedRadio.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedRadio)
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-    ).pipe(
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.put<Radio>(`${this.baseUrl}/${updatedRadio.id}`, updatedRadio, { headers }).pipe(
       catchError(error => {
         console.error('Error:', error);
-        return of(null);
+        return throwError(error);
       })
     );
   }
 
   deleteRadio(id: number): Observable<void> {
-    return from(
-      fetch(`${this.baseUrl}/${id}`, {
-        method: 'DELETE'
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-        })
-    ).pipe(
+    return this.http.delete<void>(`${this.baseUrl}/${id}`).pipe(
       catchError(error => {
         console.error('Error:', error);
-        return of(null);
-      }),
-      map(() => {})
+        return throwError(error);
+      })
     );
+  }
+
+  getRadioById(id: number): Observable<Radio | null> {
+    const url = `${this.baseUrl}/${id}`;
+
+    return this.http
+      .get<Radio>(url)
+      .pipe(
+        catchError(error => {
+            return of(null);
+          }
+        )
+      );
   }
 }

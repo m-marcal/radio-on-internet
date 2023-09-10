@@ -11,7 +11,13 @@
       <td>
         <button class="play-pause-button" (click)="selectRadio(radio)"><i class="material-icons">forward</i></button>
       </td>
-      <td class="radio-name">{{ radio.nome }}</td>
+      <td class="radio-name">
+        {{ radio.nome | titlecase }}
+        <span class="radio-description" *ngIf="radio.descricao.length > 0" >
+          <br>
+          {{ radio.descricao | lowercase }}
+        </span>
+      </td>
       <td class="crud-buttons">
         <button class="edit-button" (click)="editRadio(radio)"><i class="material-icons">edit</i></button>
         <button class="delete-button" (click)="deleteRadio(radio)"><i class="material-icons">delete</i></button>

@@ -10,7 +10,7 @@ import { RadioListComponent } from './radio-list/radio-list.component';
 import { CreateEditRadioFormComponent } from './create-edit-radio-form/create-edit-radio-form.component';
 import { FloatingButtonComponent } from './floating-button/floating-button.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

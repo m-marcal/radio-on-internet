@@ -34,8 +34,10 @@ export class RadioListComponent implements OnInit {
   }
 
   deleteRadio(radio: any) {
-    this.radioService.deleteRadio(radio.id);
-    location.reload();
+    this.radioService.deleteRadio(radio.id)
+    .subscribe(() => {
+      location.reload();
+    });
   }
 
 }

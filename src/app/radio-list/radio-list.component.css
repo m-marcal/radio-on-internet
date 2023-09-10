@@ -43,6 +43,7 @@
 
 .radio-name {
   font-size: 16px;
+  font-style: bold;
 }
 
 .edit-button,
@@ -59,4 +60,8 @@
 .material-icons {
   font-size: 20px;
   vertical-align: middle;
+}
+
+.radio-description {
+  font-style: italic;
 }
