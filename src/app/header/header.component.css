@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: #26a69a;
     color: #fff;
@@ -13,9 +13,10 @@
   margin-right: 10px;
 }
 
+/*
 .home-button {
   margin-left: 150px;
-}
+}*/
   
 .material-icons {
   font-size: 40px;
