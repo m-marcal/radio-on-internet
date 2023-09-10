@@ -5,6 +5,12 @@
       "nome": "Rádio UFRGS",
       "descricao": "Rádio ao vivo da Universidade Federal do Rio Grande do Sul",
       "url": "http://radioaovivo.ufrgs.br:8000/stream.mp3"
+    },
+    {
+      "id": 2,
+      "nome": "asdfasdf",
+      "descricao": "",
+      "url": "http://asdf.com"
     }
   ]
 }

@@ -9,7 +9,9 @@
   <tbody>
     <tr *ngFor="let radio of radios" class="radio-item">
       <td>
-        <button class="play-pause-button" (click)="selectRadio(radio)"><i class="material-icons">forward</i></button>
+        <button class="play-pause-button" (click)="toggleRadio(radio)">
+          <i class="material-icons">{{ isPlaying(radio) ? 'pause' : 'play_arrow' }}</i>
+        </button>
       </td>
       <td class="radio-name">
         {{ radio.nome | titlecase }}
@@ -25,3 +27,5 @@
     </tr>
   </tbody>
 </table>
+
+<audio #audioPlayer></audio>

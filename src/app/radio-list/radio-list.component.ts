@@ -1,7 +1,9 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { RadioService } from '../services/radio.service';
 import { Radio } from '../model/radio.model';
+import { RadioPlayerService } from '../services/radio-player.service';
+
 
 @Component({
   selector: 'app-radio-list',
@@ -9,6 +11,7 @@ import { Radio } from '../model/radio.model';
   styleUrls: ['./radio-list.component.css']
 })
 export class RadioListComponent implements OnInit {
+  @ViewChild('audioPlayer') audioPlayer!: ElementRef;
 
   selectRadio(radio: any) {
     window.alert('Radio: ' + radio.nome  + ' selecionada.');
@@ -16,9 +19,15 @@ export class RadioListComponent implements OnInit {
 
   radios: Radio[] = [];
 
-  constructor(private radioService: RadioService, private router: Router) {}
+  constructor(private radioService: RadioService, private router: Router, private radioPlayerService: RadioPlayerService) {}
+
+  ngAfterViewInit(): void {
+    const audioPlayer = this.audioPlayer.nativeElement as HTMLAudioElement;
+    this.radioPlayerService.initialize(audioPlayer);
+  }
 
   ngOnInit(): void {
+
     this.radioService.getAllRadios().subscribe(
       (radios: Radio[]) => {
         this.radios = radios;
@@ -38,6 +47,14 @@ export class RadioListComponent implements OnInit {
     .subscribe(() => {
       location.reload();
     });
+  }
+
+  toggleRadio(radio: Radio) {
+    this.radioPlayerService.toggleRadio(radio);
+  }
+
+  isPlaying(radio: Radio) {
+    return this.radioPlayerService.isRadioPlaying(radio);
   }
 
 }
