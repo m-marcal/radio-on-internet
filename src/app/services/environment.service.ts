@@ -14,7 +14,7 @@ export class EnvironmentService {
         return 'http://localhost:3000/radios';
       } else if(host.includes('github')) {
         // prod
-        return 'http://mmarcal.xyz:3000/radios';
+        return 'https://mmarcal.xyz:443/radios';
       }
 
       return 'http://localhost:3000/radios';
