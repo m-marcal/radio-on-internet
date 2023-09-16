@@ -3,15 +3,18 @@ import { Observable, from, of, throwError } from 'rxjs';
 import { Radio } from '../model/radio.model';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { EnvironmentService } from './environment.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class RadioService {
-  private baseUrl = 'http://localhost:3000/radios';
+  private baseUrl = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private envService: EnvironmentService) {
+    this.baseUrl = envService.getJsonServerBaseURL();
+  }
 
   getAllRadios(): Observable<Radio[]> {
     return this.http.get<Radio[]>(this.baseUrl).pipe(
