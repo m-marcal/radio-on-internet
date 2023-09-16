@@ -2,14 +2,15 @@
   "name": "radio-on-internet",
   "version": "0.0.0",
   "scripts": {
+    "npx": "npx",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href=/radio-on-internet/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start-json-server": "json-server --watch db.json",
-    "ghpages": "angular-cli-ghpages --dir=dist/radio-on-internet",
-    "deploy": "npm run build & npm run ghpages"
+    "build": "ng build --base-href https://m-marcal.github.io/radio-on-internet/",
+    "ghpages": "npx angular-cli-ghpages --dir=dist/radio-on-internet",
+    "deploy": "npm run build && npm run ghpages"
   },
   "private": true,
   "dependencies": {
