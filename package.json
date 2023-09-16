@@ -4,10 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --base-href=/radio-on-internet/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start-json-server": "json-server --watch db.json"
+    "start-json-server": "json-server --watch db.json",
+    "ghpages": "angular-cli-ghpages --dir=dist/radio-on-internet",
+    "deploy": "npm run build & npm run ghpages"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +21,7 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "angular-cli-ghpages": "^1.0.7",
     "json-server": "^0.17.3",
     "material-icons": "^1.13.10",
     "materialize-css": "^1.0.0",
