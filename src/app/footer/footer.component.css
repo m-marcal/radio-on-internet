@@ -1,23 +1,41 @@
 .footer {
-    position: fixed;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50%;
-    background-color: #26a69a;
-    color: black;
-    padding: 10px 20px 20px;
-    z-index: 999; /* Para garantir que o footer esteja acima de outros elementos */
-    text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+  margin-left: 25%;
+  margin-bottom: 20px;
+  background-color: #26a69a;
+  color: black;
+  padding: 10px 0;
+  z-index: 999;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.radio-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.controls {
+  flex-shrink: 0;
 }
 
 .play-pause-button {
-    padding: 5px 10px;
-    background-color: #26a69a;
-  }
-  
-.radio-name {
-  margin-top: 3px;
-  margin-bottom: 0;
-  margin-left: 20px;
+  padding: 5px 10px;
+  background-color: #26a69a;
+  border: none;
+  cursor: pointer;
+}
+
+.play-pause-button i {
+  font-size: 24px;
 }

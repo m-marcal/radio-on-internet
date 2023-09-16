@@ -2,15 +2,21 @@
   "radios": [
     {
       "id": 1,
-      "nome": "Rádio UFRGS",
+      "nome": "Radio UFRGS",
       "descricao": "Rádio ao vivo da Universidade Federal do Rio Grande do Sul",
-      "url": "http://radioaovivo.ufrgs.br:8000/stream.mp3"
+      "url": "http://radioaovivo.ufrgs.br:8000/stream.mp2"
     },
     {
       "id": 2,
-      "nome": "asdfasdf",
-      "descricao": "",
-      "url": "http://asdf.com"
+      "nome": "Radio USP",
+      "descricao": "RADIO USP SÃO PAULO - FM 93.7",
+      "url": "https://flow.emm.usp.br:8008/radiousp-rp-128.mp3"
+    },
+    {
+      "id": 3,
+      "nome": "Radio UFF",
+      "descricao": "Radio POP GOIABA UFF",
+      "url": "https://s37.maxcast.com.br:8450/live?id=1694864843324"
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Radio } from '../model/radio.model';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class RadioPlayerService {
   private selectedRadio: Radio | null = null;
   private isPlaying = false;
 
-  constructor() {}
+  constructor(private notificationService: NotificationService) {}
 
   initialize(audioPlayer: HTMLAudioElement) {
     this.audioPlayer = audioPlayer;
@@ -21,6 +22,10 @@ export class RadioPlayerService {
     } else {
       this.playRadio(radio);
     }
+
+    // Send out notification for subscribed
+    //  components.
+    this.notificationService.notifyRadioUpdated();
   }
 
   private playRadio(radio: Radio) {
@@ -42,7 +47,15 @@ export class RadioPlayerService {
     }
   }
 
-  isRadioPlaying(radio: Radio) {
-    return this.selectedRadio === radio && this.isPlaying;
+  isRadioPlaying(radio: Radio | null) {
+    return this.selectedRadio == radio && this.isPlaying;
+  }
+
+  setSelectedRadio(radio: Radio | null) {
+    this.selectedRadio = radio;
+  }
+
+  getSelectedRadio(): Radio | null {
+    return this.selectedRadio;
   }
 }

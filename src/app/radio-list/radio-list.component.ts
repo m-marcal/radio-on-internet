@@ -11,23 +11,16 @@ import { RadioPlayerService } from '../services/radio-player.service';
   styleUrls: ['./radio-list.component.css']
 })
 export class RadioListComponent implements OnInit {
-  @ViewChild('audioPlayer') audioPlayer!: ElementRef;
-
-  selectRadio(radio: any) {
-    window.alert('Radio: ' + radio.nome  + ' selecionada.');
-  }
-
+  
   radios: Radio[] = [];
 
-  constructor(private radioService: RadioService, private router: Router, private radioPlayerService: RadioPlayerService) {}
-
-  ngAfterViewInit(): void {
-    const audioPlayer = this.audioPlayer.nativeElement as HTMLAudioElement;
-    this.radioPlayerService.initialize(audioPlayer);
-  }
+  constructor(
+    private radioService: RadioService, 
+    private router: Router, 
+    private radioPlayerService: RadioPlayerService
+  ) {}
 
   ngOnInit(): void {
-
     this.radioService.getAllRadios().subscribe(
       (radios: Radio[]) => {
         this.radios = radios;
