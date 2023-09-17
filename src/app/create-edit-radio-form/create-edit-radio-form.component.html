@@ -44,7 +44,7 @@
         required 
         [(ngModel)]="this.radio.url" 
         #url="ngModel" 
-        pattern="^(http|https)://[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,4})(:[0-9]+)?(/?)([a-zA-Z0-9/?_.-]+)?$">
+        pattern="^(https?:\/\/).*">
         <div class="red-text" *ngIf="url.control.hasError('pattern') && url.control.touched">
           Por favor, insira uma URL válida. Exemplo: http://link-para-radio.mp3
         </div>
